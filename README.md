@@ -29,6 +29,7 @@ flowchart LR
 
   RAW --> INGI --> CLEAN --> VALID --> LOAD --> PROC
   INGI -->|logs| LOGS
+  CLEAN -->|logs| LOGS
 ```
 
 ## Estructura del repositorio
@@ -58,13 +59,22 @@ flowchart LR
 docker build -t fraud-detection .
 ```
 
-2. Ejecutar la etapa de ingestión (montando volúmenes para datos y logs):
+2. Ejecutar la etapa de ingestión:
 
 ```bash
 docker run --rm \
   -v $(pwd)/data:/app/data \
   -v $(pwd)/logs:/app/logs \
   fraud-detection python src/01_ingestion.py
+```
+
+3. Ejecutar la etapa de limpieza y enmascaramiento:
+
+```bash
+docker run --rm \
+  -v $(pwd)/data:/app/data \
+  -v $(pwd)/logs:/app/logs \
+  fraud-detection python src/02_cleaning.py
 ```
 
 ## Dataset (resumen)
