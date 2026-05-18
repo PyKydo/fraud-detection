@@ -34,6 +34,10 @@ def load_raw_dataset() -> pd.DataFrame:
     filepath = csv_files[0]
     logger.info("Cargando dataset desde %s", filepath.name)
     df = pd.read_csv(filepath)
+    columnas_innombradas = [c for c in df.columns if c.startswith("Unnamed")]
+    if columnas_innombradas:
+        df = df.drop(columns=columnas_innombradas)
+        logger.info("Eliminadas columnas espurias: %s", columnas_innombradas)
     logger.info("Dataset cargado: %d filas, %d columnas", len(df), len(df.columns))
     return df
 
