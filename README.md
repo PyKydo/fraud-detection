@@ -42,6 +42,7 @@ flowchart LR
 │   ├── raw/           # Dataset original (ignorado en git)
 │   └── processed/     # Datos limpios y enmascarados (ignorado en git)
 ├── src/
+│   ├── logger_config.py   # Logging centralizado (timestamp, severidad, pipeline.log)
 │   ├── 01_ingestion.py
 │   ├── 02_cleaning.py
 │   ├── 03_validation.py

@@ -1,22 +1,11 @@
-import logging
 import sqlite3
-import sys
 from pathlib import Path
 
 import pandas as pd
 
-LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
-LOG_DIR.mkdir(exist_ok=True)
+from logger_config import setup_logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(funcName)s: %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_DIR / "pipeline.log", encoding="utf-8"),
-        logging.StreamHandler(sys.stdout),
-    ],
-)
-logger = logging.getLogger(__name__)
+logger = setup_logging(__name__)
 
 PROCESSED_DIR = Path(__file__).resolve().parent.parent / "data" / "processed"
 PROCESSED_DIR.mkdir(exist_ok=True)
