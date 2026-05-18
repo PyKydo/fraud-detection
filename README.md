@@ -31,6 +31,7 @@ flowchart LR
   INGI -->|logs| LOGS
   CLEAN -->|logs| LOGS
   VALID -->|logs| LOGS
+  LOAD -->|logs| LOGS
 ```
 
 ## Estructura del repositorio
@@ -85,6 +86,15 @@ docker run --rm \
   -v $(pwd)/data:/app/data \
   -v $(pwd)/logs:/app/logs \
   fraud-detection python src/03_validation.py
+```
+
+5. Ejecutar la etapa de carga final:
+
+```bash
+docker run --rm \
+  -v $(pwd)/data:/app/data \
+  -v $(pwd)/logs:/app/logs \
+  fraud-detection python src/04_loading.py
 ```
 
 ## Dataset (resumen)
