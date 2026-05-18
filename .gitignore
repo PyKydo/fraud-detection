@@ -1,0 +1,47 @@
+# Credenciales y variables de entorno
+.env
+*.env
+
+# Datos sensibles - Proteccion Ley 19.628
+data/raw/
+data/processed/
+*.csv
+*.parquet
+*.xlsx
+*.json
+
+# Logs del pipeline
+logs/
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Archivos de contexto local del agente
+AGENT_CONTEXT.md
+
+# Docker
+*.tar
