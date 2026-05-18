@@ -34,6 +34,8 @@ flowchart LR
   LOAD -->|logs| LOGS
 ```
 
+> Ver [Carta Gantt completa](docs/GANTT.md) con las 14 tareas WBS y cronograma del proyecto.
+
 ## Estructura del repositorio
 
 ```text
@@ -49,6 +51,7 @@ flowchart LR
 │   └── 04_loading.py
 ├── logs/              # Registros del pipeline (ignorado en git)
 ├── docs/              # Informe técnico y recursos PMBOK
+│   └── GANTT.md        # Carta Gantt con las 14 tareas WBS
 ├── Dockerfile
 ├── requirements.txt
 └── .gitignore
