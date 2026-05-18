@@ -114,7 +114,7 @@ def corregir_fechas(df: pd.DataFrame) -> pd.DataFrame:
 
 def enmascarar_pii(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Aplica SHA-256 a columnas PII segun Ley Ndeg 19.628 (Proteccion de Datos Personales, Chile).
+    Aplica SHA-256 a columnas PII segun Ley N° 19.628 (Proteccion de Datos Personales, Chile).
 
     Columnas enmascaradas: cc_num, first, last, street.
     """
