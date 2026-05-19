@@ -5,8 +5,9 @@ from pathlib import Path
 
 MODEL_PATH = Path(__file__).resolve().parent / "models" / "xgboost_fraud_model.joblib"
 
+THRESHOLD = 0.25
+
 FEATURES = [
-    "category", "amt", "gender", "city", "state", "zip",
     "lat", "long", "city_pop", "job", "merchant",
     "merch_lat", "merch_long",
 ]
@@ -106,13 +107,13 @@ if submitted:
 
         try:
             X_input = preparar_input(data)
-            pred = modelo.predict(X_input)[0]
             proba = modelo.predict_proba(X_input)[0]
+            pred = 1 if proba[1] >= THRESHOLD else 0
 
             if pred == 1:
-                st.error(f"🚨 **FRAUDE DETECTADO** (probabilidad: {proba[1]:.2%})")
+                st.error(f"🚨 **FRAUDE DETECTADO** (prob: {proba[1]:.2%} >= umbral {THRESHOLD:.0%})")
             else:
-                st.success(f"✅ **Transaccion Legitima** (probabilidad de fraude: {proba[1]:.2%})")
+                st.success(f"✅ **Transaccion Legitima** (prob: {proba[1]:.2%} < umbral {THRESHOLD:.0%})")
 
             st.metric("Probabilidad de Fraude", f"{proba[1]:.2%}")
             st.metric("Probabilidad de Legitima", f"{proba[0]:.2%}")
