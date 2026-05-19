@@ -1,0 +1,4 @@
+amt,category,gender,state,zip,lat,long,city_pop,city,job,merchant,merch_lat,merch_long,is_fraud
+798.05,shopping_pos,M,IA,50598,43.0261,-94.4064,912,Whittemore,Optometrist,fraud_Hickle Group,43.062934000000006,-94.974793,1
+60.51,personal_care,F,IL,62262,38.9311,-89.2463,1810,Mulberry Grove,Race relations officer,"fraud_Medhurst, Cartwright and Ebert",39.205918,-88.295627,0
+2.36,shopping_pos,M,MN,55388,44.9595,-93.8482,5619,Watertown,Licensed conveyancer,fraud_Pouros-Haag,44.826412,-93.239743,0

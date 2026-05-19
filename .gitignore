@@ -5,10 +5,13 @@
 # Datos sensibles - Proteccion Ley 19.628
 data/raw/
 data/processed/
+!data/sample_test.csv
 *.csv
+!sample_test.csv
 *.parquet
 *.xlsx
 *.json
+!models/model_metadata.json
 
 # Logs del pipeline
 logs/

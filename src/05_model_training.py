@@ -1,3 +1,4 @@
+import json
 import numpy as np
 from pathlib import Path
 
@@ -188,9 +189,18 @@ def evaluar_modelo(modelo: XGBClassifier, X_test: pd.DataFrame, y_test: pd.Serie
     }
 
 
-def guardar_modelo(modelo: XGBClassifier) -> Path:
+def guardar_modelo(modelo: XGBClassifier, cat_means: dict, columnas: list) -> Path:
     joblib.dump(modelo, MODEL_PATH)
     logger.info("Modelo guardado en %s (%.2f MB)", MODEL_PATH, MODEL_PATH.stat().st_size / (1024 * 1024))
+
+    metadata = {
+        "cat_means": cat_means,
+        "feature_columns": columnas,
+    }
+    meta_path = MODELS_DIR / "model_metadata.json"
+    with open(meta_path, "w") as f:
+        json.dump(metadata, f)
+    logger.info("Metadata guardada en %s (%d features)", meta_path, len(columnas))
     return MODEL_PATH
 
 
@@ -210,7 +220,7 @@ def main() -> None:
 
         modelo = entrenar_modelo(X_train, y_train)
         metricas = evaluar_modelo(modelo, X_test, y_test)
-        guardar_modelo(modelo)
+        guardar_modelo(modelo, cat_means, list(X_train.columns))
 
         logger.info("=== RESUMEN FINAL ===")
         logger.info("Recall (umbral=0.5): %.4f | F1: %.4f | Precision: %.4f",
