@@ -9,6 +9,7 @@ import streamlit as st
 MODELS_DIR = Path(__file__).resolve().parent / "models"
 MODEL_PATH = MODELS_DIR / "xgboost_fraud_model.joblib"
 META_PATH = MODELS_DIR / "model_metadata.json"
+SAMPLE_PATH = Path(__file__).resolve().parent / "data" / "sample_test.csv"
 
 THRESHOLD = 0.25
 
@@ -164,7 +165,17 @@ with tab1:
 
 with tab2:
     st.subheader("Carga masiva de transacciones (CSV)")
-    st.markdown("Descargue [sample_test.csv](./data/sample_test.csv) como referencia de formato.")
+
+    if SAMPLE_PATH.exists():
+        with open(SAMPLE_PATH, "rb") as f:
+            st.download_button(
+                label="Descargar sample_test.csv de referencia",
+                data=f,
+                file_name="sample_test.csv",
+                mime="text/csv",
+            )
+    else:
+        st.info("Archivo de referencia no disponible. El CSV debe contener las columnas: amt, category, gender, state, zip, lat, long, city_pop, merch_lat, merch_long.")
 
     uploaded = st.file_uploader("Seleccione archivo CSV", type="csv")
     if uploaded:
